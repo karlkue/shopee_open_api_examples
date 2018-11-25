@@ -16,7 +16,7 @@ m.update(bs.encode())
 sig = m.hexdigest()
 
 base_auth_url = "https://partner.shopeemobile.com/api/v1/shop/auth_partner?id={0}&token={1}&redirect={2}"
-auth_url = base_auth_url.format(str(partner_id), sig, redirect_url)
+auth_url = base_auth_url.format(str(partnerid), sig, redirect_url)
 
 
 now_time = datetime.datetime.utcnow() + datetime.timedelta(hours=8)
@@ -34,7 +34,7 @@ payload = {
 }
 
 bs = order_url + "|" + json.dumps(payload)
-dig = hmac.new(key, msg=bs.encode(),
+dig = hmac.new(key.encode(), msg=bs.encode(),
                digestmod=hashlib.sha256).hexdigest()
 
 auth_header = {
